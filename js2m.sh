@@ -7,10 +7,11 @@ jsfile=$1
 mfile=$2
 templatelines=$3
 
-function js2musage()
+function js2xusage()
 {
-	echo "usage: `basename $0` <js file with template string defined> <target .m file which will be overwrote> <lines of comment in js file>"
-	echo "example: `basename $0` sample.js template.m 5"
+	echo "usage: `basename $0` <js file with template string defined> <target .m/.java file which will be overwrote> <lines of comment in js file>"
+	echo "example: `basename $0` sample.js Template.m 5"
+	echo "example: `basename $0` sample.js Template.java 5"	
 }
 
 if [ ! -f './tools/js/closure-compiler/compiler.jar' ]
@@ -31,36 +32,43 @@ fi
 if [ $# != 3 ]
 then
 	echo "`basename $0` expectes three parameters."
-	js2musage
+	js2xusage
 	exit 1
 fi
 
 if [ ${jsfile##*.} != "js" ] || [ ! -f $jsfile ]
 then
 	echo "Did you provide a existed .js file as the first parameter?"
-	js2musage
+	js2xusage
 	exit 1
 fi
 
-if [ ${mfile##*.} != "m" ]
+if [ ${mfile##*.} != "m" ] && [ ${mfile##*.} != "java" ]
 then
-	echo "Did you provide a .m filename as the second parameter that will be convert target?"
-	js2musage
+	echo "Did you provide a .m/.java filename as the second parameter that will be convert target?"
+	js2xusage
 	exit 1
 fi
 
 if ! [[ $templatelines =~ ^([0-9]+)$ ]]
 then
 	echo "Did you provide how many lines should be reserved in js file as the third parameter?"
-	js2musage
+	js2xusage
 	exit 1
 fi
+
+
 
 
 # cut extra lines
 tempfoo=`basename $0`
 TMPFILE=`mktemp /tmp/${tempfoo}.XXXXXX` || exit 1
-head -$templatelines $jsfile | sed 's|//NSString|NSString|g'  > $TMPFILE && echo -n "=@\"" >> $TMPFILE && mv $TMPFILE $mfile
+# TODO
+if [ ${mfile##*.} == "m" ]
+then
+	head -$templatelines $jsfile | sed 's|//NSString|NSString|g'  > $TMPFILE && echo -n "=@\"" >> $TMPFILE && mv $TMPFILE $mfile
+fi
+
 
 if [ $? != 0 ]
 then

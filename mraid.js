@@ -1,5 +1,6 @@
 /* The file is supposed to be automatically generated from mraid.js to escaped string for NSString constant literal. */
 //NSString * const XAD_MRAID_INJECTION_JS
+//public static final String XAD_MRAID_INJECTION_JS
 (function() {
 function MRAIDClass() {
 	/* these variables are publicly available but not encouraged to use. It is mainly for single direction data sync. */

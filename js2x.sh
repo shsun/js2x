@@ -63,11 +63,18 @@ fi
 # cut extra lines
 tempfoo=`basename $0`
 TMPFILE=`mktemp /tmp/${tempfoo}.XXXXXX` || exit 1
-# TODO
+# for objc
 if [ ${mfile##*.} == "m" ]
 then
 	head -$templatelines $jsfile | sed 's|//NSString|NSString|g'  > $TMPFILE && echo -n "=@\"" >> $TMPFILE && mv $TMPFILE $mfile
 fi
+# for java
+if [ ${mfile##*.} == "java" ]
+then
+	echo "for java"
+	head -$templatelines $jsfile | sed 's|//public|public|g'  > $TMPFILE && echo -n "=\"" >> $TMPFILE && mv $TMPFILE $mfile
+fi
+
 
 
 if [ $? != 0 ]

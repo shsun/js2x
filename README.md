@@ -7,10 +7,10 @@ For the format of js file or what it will generate, check the following command<
 
 ###javascript 2 m
 Usage : bash js2x.sh javascript_file objc_m 2;<br>
-Example : bash js2x.sh mraid.js ABC.m 2;<br>
+Example : bash js2x.sh mraid.js ObjC.m 2;<br>
 
 
 
 ###javascript 2 java
 Usage : bash js2x.sh javascript_file java_java 2;<br>
-Example : like : bash js2x.sh mraid.js ABC.java 2;<br>
+Example : like : bash js2x.sh mraid.js J.java 2;<br>

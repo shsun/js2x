@@ -1,8 +1,8 @@
 # js2x
-js2x converts a js file to a const NSString/String literal.
-It will minify js, escape doublequote and append backslash to the end of lines. 
-For the format of js file or what it will generate, check the following command
-./js2m.sh the_js_file.js the_x_file.x 2
+js2x converts a js file to a const NSString/String literal.<br>
+It will minify js, escape doublequote and append backslash to the end of lines. <br>
+For the format of js file or what it will generate, check the following command<br>
+./js2m.sh the_js_file.js the_x_file.x 2<br>
 
 
 ###javascript 2 m
